@@ -1,5 +1,7 @@
 Fastspi-
 ========
+I am currently working from the library and sketches provided at   http://code.google.com/p/fastspi/
+
 
 This is an Arduino sketch that uses the fastspi library to drive the TM1809 chip and LEDs with an ultrasonic sensor
 
