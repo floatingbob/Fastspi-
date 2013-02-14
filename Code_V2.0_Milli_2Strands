@@ -1,0 +1,141 @@
+//Alternates with an if/then statement between pin 4 and pin 5 through a variable
+//Attempt at including Millis as a clock
+//In addition, includes a MaxbotixEZ1 Sensor with an if statement to activate LEDs
+
+#include <FastSPI_LED.h> //includes LED library
+
+//--------------Maxbotix EZ1 Sensor Global Variables-----------------//
+const int sensorPin = 5;
+const int ledPin = 13; //old pin connected to LED
+long value = 0;
+int cm = 0;
+int inches = 0;
+//------------------------------------------------------------------//
+
+int trigger = 1; //switch, which we aren't currently using. 
+#define NUM_LEDS 9
+// Sometimes chipsets wire in a backwards sort of way
+struct CRGB { 
+  unsigned char b; 
+  unsigned char r; 
+  unsigned char g; 
+};
+//struct CRGB { unsigned char r; unsigned char g; unsigned char b; };
+struct CRGB *leds;
+
+//#define FOUR 4 //Old definition, replaced by aPin
+//#define FIVE 5 //Old definition
+int aPin = 4;
+int interval = 0; //Old interval variable
+
+//----Millis Clock Global Variables------------------------------//
+unsigned long currentMillis = 0;
+unsigned long stepTime1 = 0; // last time the light stepped
+unsigned long delay1 = 150; // delay between advancement to next LED  
+int str1LED = 0; //first rib of umbrella
+int str2LED = 4; //Second rib of umbrella
+//---------------------------------------------------------------//
+
+void setup()
+{
+  FastSPI_LED.setLeds(NUM_LEDS);
+  //FastSPI_LED.setChipset(CFastSPI_LED::SPI_SM16716);
+  FastSPI_LED.setChipset(CFastSPI_LED::SPI_TM1809);
+  //FastSPI_LED.setChipset(CFastSPI_LED::SPI_LPD6803);
+  //FastSPI_LED.setChipset(CFastSPI_LED::SPI_HL1606);
+  //FastSPI_LED.setChipset(CFastSPI_LED::SPI_595);
+  //FastSPI_LED.setChipset(CFastSPI_LED::SPI_WS2801);
+  FastSPI_LED.setPin(4); //set pin to drive LEDs
+  FastSPI_LED.init(); //initiate the library for emenint use
+  FastSPI_LED.start();
+  leds = (struct CRGB*)FastSPI_LED.getRGBData(); 
+  Serial.begin(9600);
+  Serial.println("serial");
+  memset(leds, 0, NUM_LEDS * 3);//(LEDs array, constant brightness value, RGB components for NUM LEDs)
+  leds[0].b = 255; 
+  leds[0].g = 255; 
+  leds[0].r = 255;
+
+}
+
+void loop (){
+  currentMillis = millis ();
+
+  if(currentMillis - stepTime1 >= delay1) {
+    leds[str1LED].b = 0; 
+    leds[str1LED].g = 0; 
+    leds[str1LED].r = 0;
+    leds[str2LED].b = 0; 
+    leds[str2LED].g = 0; 
+    leds[str2LED].r = 0;
+
+    str1LED++;
+    str2LED++;
+    if(str1LED == 4){
+      str1LED = 0;
+      if(str2LED == 8){
+        str2LED = 4;
+      }
+    }
+    leds[str1LED].b = 255; 
+    leds[str1LED].g = 255; 
+    leds[str1LED].r = 255;
+    leds[str2LED].b = 255; 
+    leds[str2LED].g = 255; 
+    leds[str2LED].r = 255;
+
+    stepTime1 = currentMillis;
+     if(currentMillis - stepTime1 >= delay1) {
+    leds[str1LED].b = 0; 
+    leds[str1LED].g = 0; 
+    leds[str1LED].r = 0;
+    leds[str2LED].b = 0; 
+    leds[str2LED].g = 0; 
+    leds[str2LED].r = 0;
+
+    str1LED++;
+    str2LED++;
+    if(str1LED == 3){
+      str1LED = 0;
+      if(str2LED == 7){
+        str2LED = 4;
+      }
+    }
+    leds[str1LED].b = 255; 
+    leds[str1LED].g = 255; 
+    leds[str1LED].r = 255;
+    leds[str2LED].b = 255; 
+    leds[str2LED].g = 255; 
+    leds[str2LED].r = 255;
+
+    stepTime1 = currentMillis;
+
+  }
+
+  }
+  value = pulseIn(sensorPin, HIGH);
+  cm = value/58; //pulse width is 58 microseconds per cm
+  inches = value / 147; //which is 147 microseconds per inch
+  Serial.print(cm);
+  Serial.print(" cm, ");
+  Serial.print(inches);
+  Serial.print("in");
+  Serial.println();
+
+  if (inches <= 10) {
+
+
+    FastSPI_LED.show();
+    delay(4);
+  }
+  else{
+    memset(leds, 0, NUM_LEDS * 3);//(LEDs array, constant brightness value, RGB components for NUM LEDs)
+  Serial.print("memset");
+  }
+
+
+}
+
+
+
+
