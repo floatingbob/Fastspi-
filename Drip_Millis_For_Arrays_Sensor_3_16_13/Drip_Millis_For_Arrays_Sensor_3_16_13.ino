@@ -12,8 +12,11 @@
  3. Added randomizer variable within the loop for each strand.
  4. Add array for millis clock
  5. Finish staggering a fake digit for 0 in the arrays so the numbers match strands
+ 
+ NEW - 03/16/13
  6. Everything that can be enumerated is within an array except for the actual strand operation.
  It's just too large for me to comprehend. 
+ 7. Added the sensor to the sketch again
  
  */
 //--------------Maxbotix EZ1 Sensor Global Variables-----------------//
@@ -34,17 +37,17 @@ struct CRGB *leds;
 int aPin = 4;
 
 //----Millis Clock Global Variables------------------------------//
-unsigned long currentMillis[5] = {
-  0,0,0,0,0}; //millis timer array strands 1-4
+unsigned long currentMillis[6] = {
+  0,0,0,0,0,0}; //millis timer array strands 1-4
 
-unsigned long stepTime[5] = {
-  0,0,0,0,0}; //step time clock restarter strands 1-4
+unsigned long stepTime[6] = {
+  0,0,0,0,0,0}; //step time clock restarter strands 1-4
 
 unsigned long delayLED[5] = {
   20,20,20,20,20}; //delay array. !!!Randomizer further randomizes within sketch!
 
 unsigned long strandLength[5] = {
-  0,10,10,10,10}; //strand length (change this number for each rib of the umbrella)
+  0,18,18,18,18}; //strand length (change this number for each rib of the umbrella)
 
 int startLED[5] = {
   0, 0, strandLength[1], strandLength[1] + strandLength[2],strandLength[1] + strandLength[2] +
@@ -84,7 +87,7 @@ void setup()
 void loop (){
   int randomizer[5] ={
     0, delayLED[1] + random(1,100), delayLED[2] + random(1,100),delayLED[3] + random(1,100),
-    delayLED[4] + random(1,100)    };
+    delayLED[4] + random(1,100)            };
 
   value = pulseIn(sensorPin, HIGH);
   cm = value/58; //pulse width is 58 microseconds per cm
@@ -95,7 +98,12 @@ void loop (){
   Serial.print("in");
   Serial.println();
   //        delay(1000);
-  if (inches <= 20) {
+
+  currentMillis[5] = millis();
+
+  if (inches <= 20) { 
+
+    Serial.println(currentMillis[5]);
 
 
 
@@ -118,7 +126,7 @@ void loop (){
         }
 
         leds[LEDsections[1]].b = 255; 
-        leds[LEDsections[1]].g = 0; 
+        leds[LEDsections[1]].g = 255; 
         leds[LEDsections[1]].r = 255;
 
         stepTime[1] = currentMillis[1];
@@ -144,8 +152,8 @@ void loop (){
         }
 
         leds[LEDsections[2]].b = 255; 
-        leds[LEDsections[2]].g = 0; 
-        leds[LEDsections[2]].r = 0;
+        leds[LEDsections[2]].g = 255; 
+        leds[LEDsections[2]].r = 255;
 
         stepTime[2] = currentMillis[2];
 
@@ -168,8 +176,8 @@ void loop (){
           LEDsections[3] = startLED[3];
         }
 
-        leds[LEDsections[3]].b = 0; 
-        leds[LEDsections[3]].g = 0; 
+        leds[LEDsections[3]].b = 255; 
+        leds[LEDsections[3]].g = 255; 
         leds[LEDsections[3]].r = 255;
 
         stepTime[3] = currentMillis[3];
@@ -193,9 +201,9 @@ void loop (){
           LEDsections[4] = startLED[4];
         }
 
-        leds[LEDsections[4]].b = 0; 
+        leds[LEDsections[4]].b = 255; 
         leds[LEDsections[4]].g = 255; 
-        leds[LEDsections[4]].r = 0;
+        leds[LEDsections[4]].r = 255;
 
         stepTime[4] = currentMillis[4];
 
@@ -205,7 +213,8 @@ void loop (){
 
     FastSPI_LED.show();
     Serial.println("LED's On ");
-  }
+
+  }  
   else{
 
     int n;
@@ -218,15 +227,27 @@ void loop (){
       n++;
 
       if( n == NUM_LEDS){
-         n = 0;
+        n = 0;
       }
 
       FastSPI_LED.show();
       Serial.println("No people detected. ");
     }
-
   }
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
