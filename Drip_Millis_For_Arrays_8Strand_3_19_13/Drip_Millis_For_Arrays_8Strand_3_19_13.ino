@@ -24,7 +24,7 @@ int inches = 0;
 //------------------------------------------------------------------//
 
 #include <FastSPI_LED.h>
-#define NUM_LEDS 200
+#define NUM_LEDS 300
 struct CRGB { 
   unsigned char r; 
   unsigned char g; 
@@ -46,13 +46,16 @@ unsigned long delayLED[9] = {
 unsigned long strandLength[9] = {
   0,18,18,18,18,18,18,18,18}; //strand length (change this number for each rib of the umbrella)
 
-int startLED[9] = {
-  0, 0, strandLength[1], strandLength[1] + strandLength[2],strandLength[1] + strandLength[2] +
-    strandLength[3], strandLength[1] + strandLength[2] +
-    strandLength[3] + strandLength[4], strandLength[1] + strandLength[2] +
-    strandLength[3] + strandLength[4] + strandLength[5],strandLength[1] + strandLength[2] +
-    strandLength[3] + strandLength[4] + strandLength[5] + strandLength[6],strandLength[1] + strandLength[2] +
-    strandLength[3] + strandLength[4] + strandLength[5] + strandLength[6] + strandLength[7]
+int startLED[9] = { 0,0,18,36,54,72,90,108,126
+//  0,
+//  0,
+//  strandLength[1],
+//  strandLength[1] + strandLength[2],
+//  strandLength[1] + strandLength[2] + strandLength[3],
+//  strandLength[1] + strandLength[2] + strandLength[3] + strandLength[4],
+//  strandLength[1] + strandLength[2] + strandLength[3] + strandLength[4] + strandLength[5],
+//  strandLength[1] + strandLength[2] + strandLength[3] + strandLength[4] + strandLength[5] + strandLength[6],
+//  strandLength[1] + strandLength[2] + strandLength[3] + strandLength[4] + strandLength[5] + strandLength[6] + strandLength[7]
 }; //global load of start position based upon strand length
 
 int LEDsections[9] = {
@@ -88,9 +91,17 @@ void setup()
 }
 
 void loop (){
-  int randomizer[5] ={
-    0, delayLED[1] + random(1,100), delayLED[2] + random(1,100),delayLED[3] + random(1,100),
-    delayLED[4] + random(1,100)  };
+  int randomizer[9] ={
+    0,
+    delayLED[1] + random(1,100),
+    delayLED[2] + random(1,100),
+    delayLED[3] + random(1,100),
+    delayLED[4] + random(1,100),
+    delayLED[5] + random(1,100),
+    delayLED[6] + random(1,100),
+    delayLED[7] + random(1,100),
+    delayLED[8] + random(1,100)
+  };
   //  int randomizer[1] = delayLED[1] + random(1,200);
   //  int randomizer[2] = delayLED[2] + random(1,200);
   //  int randomizer[3] = delayLED[3] + random(1,200);
@@ -125,9 +136,9 @@ void loop (){
         LEDsections[1] = startLED[1];
       }
 
-      leds[LEDsections[1]].b = 180; 
-      leds[LEDsections[1]].g = 180; 
-      leds[LEDsections[1]].r = 180;
+      leds[LEDsections[1]].b = 0; 
+      leds[LEDsections[1]].g = 0; 
+      leds[LEDsections[1]].r = 255;
 
       stepTime[1] = currentMillis[1];
 
@@ -151,9 +162,9 @@ void loop (){
         LEDsections[2] = startLED[2];
       }
 
-      leds[LEDsections[2]].b = 180; 
-      leds[LEDsections[2]].g = 180; 
-      leds[LEDsections[2]].r = 180;
+      leds[LEDsections[2]].b = 30; 
+      leds[LEDsections[2]].g = 105; 
+      leds[LEDsections[2]].r = 210;
 
       stepTime[2] = currentMillis[2];
 
@@ -176,9 +187,9 @@ void loop (){
         LEDsections[3] = startLED[3];
       }
 
-      leds[LEDsections[3]].b = 180; 
-      leds[LEDsections[3]].g = 180; 
-      leds[LEDsections[3]].r = 180;
+      leds[LEDsections[3]].b = 0; 
+      leds[LEDsections[3]].g = 255; 
+      leds[LEDsections[3]].r = 255;
 
       stepTime[3] = currentMillis[3];
     }
@@ -201,9 +212,9 @@ void loop (){
         LEDsections[4] = startLED[4];
       }
 
-      leds[LEDsections[4]].b = 180; 
-      leds[LEDsections[4]].g = 180; 
-      leds[LEDsections[4]].r = 180;
+      leds[LEDsections[4]].b = 50; 
+      leds[LEDsections[4]].g = 204; 
+      leds[LEDsections[4]].r = 153;
 
       stepTime[4] = currentMillis[4];
 
@@ -226,9 +237,9 @@ void loop (){
         LEDsections[5] = startLED[5];
       }
 
-      leds[LEDsections[5]].b = 180; 
-      leds[LEDsections[5]].g = 180; 
-      leds[LEDsections[5]].r = 180;
+      leds[LEDsections[5]].b = 0; 
+      leds[LEDsections[5]].g = 255; 
+      leds[LEDsections[5]].r = 0;
 
       stepTime[5] = currentMillis[5];
 
@@ -251,9 +262,9 @@ void loop (){
         LEDsections[6] = startLED[6];
       }
 
-      leds[LEDsections[6]].b = 180; 
-      leds[LEDsections[6]].g = 180; 
-      leds[LEDsections[6]].r = 180;
+      leds[LEDsections[6]].b = 142; 
+      leds[LEDsections[6]].g = 107; 
+      leds[LEDsections[6]].r = 35;
 
       stepTime[6] = currentMillis[6];
 
@@ -276,9 +287,9 @@ void loop (){
         LEDsections[7] = startLED[7];
       }
 
-      leds[LEDsections[7]].b = 180; 
-      leds[LEDsections[7]].g = 180; 
-      leds[LEDsections[7]].r = 180;
+      leds[LEDsections[7]].b = 255; 
+      leds[LEDsections[7]].g = 0; 
+      leds[LEDsections[7]].r = 36;
 
       stepTime[7] = currentMillis[7];
 
@@ -301,9 +312,9 @@ void loop (){
         LEDsections[8] = startLED[8];
       }
 
-      leds[LEDsections[8]].b = 180; 
-      leds[LEDsections[8]].g = 180; 
-      leds[LEDsections[8]].r = 180;
+      leds[LEDsections[8]].b = 205; 
+      leds[LEDsections[8]].g = 34; 
+      leds[LEDsections[8]].r = 104;
 
       stepTime[8] = currentMillis[8];
 
