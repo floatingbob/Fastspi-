@@ -79,6 +79,10 @@ int t[9] = {
 int s = 0; //speed variable, which pulls a random number from the blinkSpeed[]
 
 int reset = 0; //reset all LEDs when not sensing people
+
+int rr = 255; //global red value
+int gg = 255; //global green value
+int bb = 255; //global blue value
 //---------------------------------------------------------------//
 
 void setup()
@@ -161,7 +165,7 @@ void loop(){
 
       leds[LEDsections[1]].r = 255;
       leds[LEDsections[1]].g = 255;
-      leds[LEDsections[1]].b = 0;
+      leds[LEDsections[1]].b = 255;
 
       stepTime[1] = currentMillis[1];
     }
@@ -187,9 +191,9 @@ void loop(){
         Serial.println(s[2]);
       }
 
-      leds[LEDsections[2]].r = 50;
+      leds[LEDsections[2]].r = 255;
       leds[LEDsections[2]].g = 255;
-      leds[LEDsections[2]].b = 50;
+      leds[LEDsections[2]].b = 255;
 
       stepTime[2] = currentMillis[2];
     }
@@ -212,8 +216,8 @@ void loop(){
         t[3] = s[3];
       }
 
-      leds[LEDsections[3]].r = 0;
-      leds[LEDsections[3]].g = 0;
+      leds[LEDsections[3]].r = 255;
+      leds[LEDsections[3]].g = 255;
       leds[LEDsections[3]].b = 255;
 
       stepTime[3] = currentMillis[3];
@@ -237,9 +241,9 @@ void loop(){
         t[4] = s[4];
       }
 
-      leds[LEDsections[4]].r = 0;
+      leds[LEDsections[4]].r = 255;
       leds[LEDsections[4]].g = 255;
-      leds[LEDsections[4]].b = 0;
+      leds[LEDsections[4]].b = 255;
 
       stepTime[4] = currentMillis[4];
     }
@@ -335,8 +339,8 @@ void loop(){
       }
 
       leds[LEDsections[8]].r = 255;
-      leds[LEDsections[8]].g = 0;
-      leds[LEDsections[8]].b = 0;
+      leds[LEDsections[8]].g = 255;
+      leds[LEDsections[8]].b = 255;
 
       stepTime[8] = currentMillis[8];
     }
@@ -349,22 +353,6 @@ void loop(){
 }
 
 //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
