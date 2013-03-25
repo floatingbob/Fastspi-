@@ -4,13 +4,8 @@
  LEDs currently drive from one pin, into LEDs that are hooked up in series. 
  Four strands blink at random speeds.
  
-03/23/2013 
-      1. Fixed timing issues.
-      2. Streamlined code structure. Only needed one for structure instead of one for each strand.
-         Housed each strand within that for structure.
-      3. Added a new timer switch so that each strand runs at a certain pace for one drip, then switches to 
-         alternative random pace.
-      
+ I am currently attempting to streamline all my for statements that drive the LEDs into
+ a single for array. 
  
  
  */
@@ -79,10 +74,6 @@ int t[9] = {
 int s = 0; //speed variable, which pulls a random number from the blinkSpeed[]
 
 int reset = 0; //reset all LEDs when not sensing people
-
-int rr = 255; //global red value
-int gg = 255; //global green value
-int bb = 255; //global blue value
 //---------------------------------------------------------------//
 
 void setup()
@@ -105,19 +96,19 @@ void setup()
 }
 
 void loop(){
-//  int randomizer[9] ={
-//    0,
-//    delayLED[1] + random(1,100),
-//    delayLED[2] + random(1,100),
-//    delayLED[3] + random(1,100),
-//    delayLED[4] + random(1,100),
-//    delayLED[5] + random(1,100),
-//    delayLED[6] + random(1,100),
-//    delayLED[7] + random(1,100),
-//    delayLED[8] + random(1,100)
-//    };
+  //  int randomizer[9] ={
+  //    0,
+  //    delayLED[1] + random(1,100),
+  //    delayLED[2] + random(1,100),
+  //    delayLED[3] + random(1,100),
+  //    delayLED[4] + random(1,100),
+  //    delayLED[5] + random(1,100),
+  //    delayLED[6] + random(1,100),
+  //    delayLED[7] + random(1,100),
+  //    delayLED[8] + random(1,100)
+  //    };
 
-    randNumber = random(1,50);
+  //    randNumber = random(1,50);
   //  Serial.println(randNumber);
 
 
@@ -131,19 +122,34 @@ void loop(){
   currentMillis[6] = millis();
   currentMillis[7] = millis();
   currentMillis[8] = millis();
- int maX = 40;          //blinkSpeed Index maximum within the array
- int miN = 4;          //blinkSpeed Index minimum within the array of 100 numbers
-  int s[8] = {
-    random(blinkSpeed[miN],blinkSpeed[maX]),random(blinkSpeed[miN],blinkSpeed[maX]),random(blinkSpeed[miN],blinkSpeed[maX]),
-    random(blinkSpeed[miN],blinkSpeed[maX]),random(blinkSpeed[miN],blinkSpeed[maX]),random(blinkSpeed[miN],blinkSpeed[maX]),
-    random(blinkSpeed[miN],blinkSpeed[maX]),random(blinkSpeed[miN],blinkSpeed[maX])}; //Initializes s with random number between miN-maX
-  int k;                                        //
-  for(k = 0; k <= endLED[8]; k++){              //Looks through LEDs to see if we've reached end of strand 1
+  int maX = 35;          //blinkSpeed Index maximum within the array
+  int miN = 1;          //blinkSpeed Index minimum within the array of 100 numbers
+  int s[9] = {
+    random(blinkSpeed[miN],blinkSpeed[maX]), //0
+    random(blinkSpeed[miN],blinkSpeed[maX]), //1
+    random(blinkSpeed[miN],blinkSpeed[maX]), //2
+    random(blinkSpeed[miN],blinkSpeed[maX]), //3
+    random(blinkSpeed[miN],blinkSpeed[maX]), //4
+    random(blinkSpeed[miN],blinkSpeed[maX]), //5
+    random(blinkSpeed[miN],blinkSpeed[maX]), //6
+    random(blinkSpeed[miN],blinkSpeed[maX]), //7 
+    random(blinkSpeed[miN],blinkSpeed[maX])  //8
+
+    };   //Initializes s with random number between miN-maX
+    int k;                                        //
+  for(k = 0; k <= endLED[1]; k++){              //Looks through LEDs to see if we've reached end of strand 1
 
 
     //-------Strand 1---------------------------------------------------------------------
     if (k >= endLED[1]){                        //If we have, then set temporary t back to s for new random #
-      t[1] = s[1];
+//      t[1] = s[1];
+//      t[2] = s[2];
+//      t[3] = s[3];
+//      t[4] = s[4];
+//      t[5] = s[5];
+//      t[6] = s[6];
+//      t[7] = s[7];
+//      t[8] = s[8];
 
     }
 
@@ -353,6 +359,23 @@ void loop(){
 }
 
 //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
