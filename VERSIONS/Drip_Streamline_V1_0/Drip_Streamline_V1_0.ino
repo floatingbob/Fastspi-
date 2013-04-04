@@ -1,5 +1,8 @@
-/* by Robert Werner
+/* 
+ 
+ by Robert Werner
  floatingbob@icloud.com
+ 
  This sketch allows you to drive a strand of LEDs with a TM1009 chip. These
  LEDs currently drive from one pin, into LEDs that are hooked up in series. 
  Four strands blink at random speeds.
@@ -9,11 +12,14 @@
  
  
  */
+
 //--------------Maxbotix EZ1 Sensor Global Variables-----------------//
+
 const int sensorPin = 5;
 long value = 0;
 int cm = 0;
 int inches = 0;
+
 //------------------------------------------------------------------//
 
 #include <FastSPI_LED.h>
@@ -27,6 +33,7 @@ struct CRGB *leds;
 int aPin = 4;
 
 //----Millis Clock Global Variables------------------------------//
+
 unsigned long currentMillis[9] = {
   0,0,0,0,0,0,0,0,0}; //millis timer array strands 1-4
 
@@ -74,10 +81,10 @@ int t[9] = {
 int s = 0; //speed variable, which pulls a random number from the blinkSpeed[]
 
 int reset = 0; //reset all LEDs when not sensing people
+
 //---------------------------------------------------------------//
 
-void setup()
-{
+void setup() {
   FastSPI_LED.setLeds(NUM_LEDS);
   //FastSPI_LED.setChipset(CFastSPI_LED::SPI_SM16716);
   FastSPI_LED.setChipset(CFastSPI_LED::SPI_TM1809);
@@ -88,14 +95,20 @@ void setup()
   FastSPI_LED.setPin(4); //set pin to drive LEDs
   FastSPI_LED.init(); //initiate the library for emenint use
   FastSPI_LED.start();
+
   leds = (struct CRGB*)FastSPI_LED.getRGBData(); 
+
   Serial.begin(9600);
   //  Serial.println("serial");
 
   randomSeed(analogRead(0));
+
 }
 
-void loop(){
+//---------------------------------------------------------------//
+
+void loop() {
+
   //  int randomizer[9] ={
   //    0,
   //    delayLED[1] + random(1,100),
@@ -111,9 +124,6 @@ void loop(){
   //    randNumber = random(1,50);
   //  Serial.println(randNumber);
 
-
-
-
   currentMillis[1] = millis();
   currentMillis[2] = millis();
   currentMillis[3] = millis();
@@ -122,6 +132,7 @@ void loop(){
   currentMillis[6] = millis();
   currentMillis[7] = millis();
   currentMillis[8] = millis();
+
   int maX = 35;          //blinkSpeed Index maximum within the array
   int miN = 1;          //blinkSpeed Index minimum within the array of 100 numbers
   int s[9] = {
@@ -136,20 +147,21 @@ void loop(){
     random(blinkSpeed[miN],blinkSpeed[maX])  //8
 
     };   //Initializes s with random number between miN-maX
+
     int k;                                        //
   for(k = 0; k <= endLED[1]; k++){              //Looks through LEDs to see if we've reached end of strand 1
 
 
     //-------Strand 1---------------------------------------------------------------------
     if (k >= endLED[1]){                        //If we have, then set temporary t back to s for new random #
-//      t[1] = s[1];
-//      t[2] = s[2];
-//      t[3] = s[3];
-//      t[4] = s[4];
-//      t[5] = s[5];
-//      t[6] = s[6];
-//      t[7] = s[7];
-//      t[8] = s[8];
+      //      t[1] = s[1];
+      //      t[2] = s[2];
+      //      t[3] = s[3];
+      //      t[4] = s[4];
+      //      t[5] = s[5];
+      //      t[6] = s[6];
+      //      t[7] = s[7];
+      //      t[8] = s[8];
 
     }
 
@@ -359,6 +371,7 @@ void loop(){
 }
 
 //}
+
 
 
 
