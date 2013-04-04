@@ -7,23 +7,15 @@ void loop() {
   // Blink Min/Max
   int maX = 35;          
   int miN = 1;
-  
-//  // Blink Speed
-//  speed[9] = {
-//    random(blinkSpeed[miN],blinkSpeed[maX]), //0
-//    random(blinkSpeed[miN],blinkSpeed[maX]), //1
-//    random(blinkSpeed[miN],blinkSpeed[maX]), //2
-//    random(blinkSpeed[miN],blinkSpeed[maX]), //3
-//    random(blinkSpeed[miN],blinkSpeed[maX]), //4
-//    random(blinkSpeed[miN],blinkSpeed[maX]), //5
-//    random(blinkSpeed[miN],blinkSpeed[maX]), //6
-//    random(blinkSpeed[miN],blinkSpeed[maX]), //7 
-//    random(blinkSpeed[miN],blinkSpeed[maX])  //8
-//  };
 
+
+  // #FTW
   for(int i = 0; i <= numStrands; i++) {
     
-    // Speed
+    // Delay
+    randomizer[i] = delayLED[i] + random(1, 100);
+    
+    // Set Random Speed
     speed[i] = random(blinkSpeed[miN],blinkSpeed[maX]);
     
     // Reset Current Millisecond
@@ -34,7 +26,7 @@ void loop() {
     
   } 
 
-  // Light Them LEDs !
+  // Light Them LEDs !!!
   FastSPI_LED.show();
 
 } /* END OF LOOP */
