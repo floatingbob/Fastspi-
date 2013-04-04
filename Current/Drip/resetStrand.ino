@@ -5,8 +5,8 @@
 void resetStrand(int index) {
   
   // Is It At the End ?? Then Reset
-  if (k >= endLED[index]){
-    t[index] = s[index];
+  if (index >= endLED[index]){
+    //t[index] = s[index];
   }
   
   // Is Our Timer Ready To Switch ?? 
@@ -23,7 +23,7 @@ void resetStrand(int index) {
     // Go Back To The Beginning
     if(LEDsections[index] == endLED[index]){
       LEDsections[index] = startLED[index];
-      t[index] = s[index];
+      //t[index] = s[index];
     }
 
     // Turn The LEDs White
