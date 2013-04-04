@@ -6,11 +6,11 @@ void resetStrand(int index) {
   
   // Is It At the End ?? Then Reset
   if (index >= endLED[index]){
-    //t[index] = s[index];
+    //timer[index] = speed[index];
   }
   
   // Is Our Timer Ready To Switch ?? 
-  if(currentMillis[index] - stepTime[index] >= t[index]) {
+  if(currentMillis[index] - stepTime[index] >= timer[index]) {
     
     // Turn The LEDs Black
     leds[LEDsections[index]].r = 0;
@@ -23,7 +23,7 @@ void resetStrand(int index) {
     // Go Back To The Beginning
     if(LEDsections[index] == endLED[index]){
       LEDsections[index] = startLED[index];
-      //t[index] = s[index];
+      //timer[index] = speed[index];
     }
 
     // Turn The LEDs White

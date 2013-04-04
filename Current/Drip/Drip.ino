@@ -88,7 +88,7 @@ int blinkSpeed[101] = {
 long randNumber;
 
 // Strand timer varialbe that allows an LED to run the full length at one speed
-int t[9] = {0,0,0,0,0,0,0,0}; 
+int timer[9] = {0,0,0,0,0,0,0,0}; 
 
 // Speed variable, which pulls a random number from the blinkSpeed[]
 int s = 0; 

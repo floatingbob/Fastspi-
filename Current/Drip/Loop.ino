@@ -19,7 +19,7 @@ void loop() {
   int miN = 1;
   
   // Blink Speed
-  int s[9] = {
+  int speed[9] = {
     random(blinkSpeed[miN],blinkSpeed[maX]), //0
     random(blinkSpeed[miN],blinkSpeed[maX]), //1
     random(blinkSpeed[miN],blinkSpeed[maX]), //2
