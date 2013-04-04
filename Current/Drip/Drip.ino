@@ -91,7 +91,8 @@ long randNumber;
 int timer[9] = {0,0,0,0,0,0,0,0}; 
 
 // Speed variable, which pulls a random number from the blinkSpeed[]
-int s = 0; 
+//int speed = 0; 
+int speed[9] = {0,0,0,0,0,0,0,0};
 
 // Reset all LEDs when not sensing people
 int reset = 0; 

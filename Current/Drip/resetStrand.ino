@@ -2,37 +2,40 @@
 //---------------------------------------------------------------//
 // RESET
 
-void resetStrand(int index) {
+void resetStrand(int i) {
+  
+  timer[i] = 0;
+  speed[i] = 0;
   
   // Is It At the End ?? Then Reset
-  if (index >= endLED[index]){
-    //timer[index] = speed[index];
+  if (i >= endLED[i]){
+    timer[i] = speed[i];
   }
   
   // Is Our Timer Ready To Switch ?? 
-  if(currentMillis[index] - stepTime[index] >= timer[index]) {
+  if(currentMillis[i] - stepTime[i] >= timer[i]) {
     
     // Turn The LEDs Black
-    leds[LEDsections[index]].r = 0;
-    leds[LEDsections[index]].g = 0;
-    leds[LEDsections[index]].b = 0;
+    leds[LEDsections[i]].r = 0;
+    leds[LEDsections[i]].g = 0;
+    leds[LEDsections[i]].b = 0;
 
     // Increment
-    LEDsections[index]++;
+    LEDsections[i]++;
 
     // Go Back To The Beginning
-    if(LEDsections[index] == endLED[index]){
-      LEDsections[index] = startLED[index];
-      //timer[index] = speed[index];
+    if(LEDsections[i] == endLED[i]){
+      LEDsections[i] = startLED[i];
+      timer[i] = speed[i];
     }
 
     // Turn The LEDs White
-    leds[LEDsections[index]].r = 255;
-    leds[LEDsections[index]].g = 255;
-    leds[LEDsections[index]].b = 255;
+    leds[LEDsections[i]].r = 255;
+    leds[LEDsections[i]].g = 255;
+    leds[LEDsections[i]].b = 255;
 
     // Reset Our Timer
-    stepTime[index] = currentMillis[index];
+    stepTime[i] = currentMillis[i];
   }
   
   
