@@ -4,16 +4,6 @@
 
 void loop() {
   
-  // Current
-  currentMillis[1] = millis();
-  currentMillis[2] = millis();
-  currentMillis[3] = millis();
-  currentMillis[4] = millis();
-  currentMillis[5] = millis();
-  currentMillis[6] = millis();
-  currentMillis[7] = millis();
-  currentMillis[8] = millis();
-
   // Blink Min/Max
   int maX = 35;          
   int miN = 1;
@@ -32,10 +22,16 @@ void loop() {
   };
 
   for(int i = 0; i <= numStrands; i++) {
-    // Modular !!
+    
+    // Reset Current Millisecond
+    currentMillis[i] = millis();
+    
+    // Check & Reset LED Strand
     resetStrand(i);
+    
   } 
 
+  // Light Them LEDs !
   FastSPI_LED.show();
 
 } /* END OF LOOP */
