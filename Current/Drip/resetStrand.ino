@@ -2,10 +2,16 @@
 //---------------------------------------------------------------//
 // RESET
 
-void resetStrand(int i) {
+void resetStrand(int k, int i) {
+  
+  if(i != 1) {
+    if (k >= endLED[i]){       
+        timer[i] = speed[i];
+     } 
+  }
   
   // Is Our Timer Ready To Switch ?? 
-  if(currentMillis[i] - stepTime[i] >= randomizer[i]) {
+  if(currentMillis[i] - stepTime[i] >= timer[i]) {
     
     // Turn The LEDs Black
     leds[LEDsections[i]].r = 0;
@@ -14,11 +20,6 @@ void resetStrand(int i) {
 
     // Increment
     LEDsections[i]++;
-    
-    //
-    if(LEDsections[i] == endLED[i]){
-      LEDsections[i] = startLED[i];
-    }
 
     // Go Back To The Beginning
     if(LEDsections[i] == endLED[i]){
