@@ -20,7 +20,7 @@ void loop() {
         // Check & Reset LED Strand
         resetStrand(k, i);
       }
-      
+      //Serial.println("Loop #" + char(i) );   
   } 
 
   // Light Them LEDs !!!

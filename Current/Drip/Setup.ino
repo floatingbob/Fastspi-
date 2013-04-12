@@ -17,7 +17,7 @@ void setup() {
   leds = (struct CRGB*)FastSPI_LED.getRGBData(); 
 
   // Serial Begin
-  Serial.begin(9600);
+  Serial.begin(4800);
 
   // 
   randomSeed(analogRead(0));
