@@ -8,22 +8,19 @@ void loop() {
   int maX = 35;          
   int miN = 1;
 
-
-  // #FTW
   for(int i = 0; i <= numStrands; i++) {
-    
-    // Delay
-    randomizer[i] = delayLED[i] + random(1, 100);
-    
-    // Set Random Speed
-    speed[i] = random(blinkSpeed[miN],blinkSpeed[maX]);
-    
-    // Reset Current Millisecond
-    currentMillis[i] = millis();
-    
-    // Check & Reset LED Strand
-    resetStrand(i);
-    
+      
+      // Set Random Speed
+      speed[i] = random(blinkSpeed[miN],blinkSpeed[maX]);
+      
+      // Reset Current Millisecond
+      currentMillis[i] = millis();
+      
+      for(int k = 0; k <= endLED[1]; k++) {   
+        // Check & Reset LED Strand
+        resetStrand(k, i);
+      }
+      //Serial.println("Loop #" + char(i) );   
   } 
 
   // Light Them LEDs !!!
