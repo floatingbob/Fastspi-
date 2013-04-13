@@ -39,44 +39,49 @@ int cm = 0;
 int inches = 0;
 
 // CLOCK
-unsigned long currentMillis[9] = {0,0,0,0,0,0,0,0,0}; //millis timer array strands 1-4
+unsigned long currentMillis[8] = {0,0,0,0,0,0,0,0}; //millis timer array strands 1-4
 
-unsigned long stepTime[9] = {0,0,0,0,0,0,0,0,0}; //step time clock restarter strands 1-4
+unsigned long stepTime[8] = {0,0,0,0,0,0,0,0}; //step time clock restarter strands 1-4
 
-unsigned long delayLED[9] = {20,20,20,20,20,20,20,20,20}; //delay array. !!!Randomizer further randomizes within sketch!
-
-unsigned long strandLength[9] = {0,18,18,18,18,18,18,18,18}; //strand length (change this number for each rib of the umbrella)
+//unsigned long strandLength[8] = {18,18,18,18,18,18,18,18/*,18*/}; //strand length (change this number for each rib of the umbrella)
+unsigned long strandLength = 18;
 
 // Global load of start position based upon strand length
-int startLED[9] = { 
-  //  0,0,18,36,54,72,90,108,126
+int startLED[8] = { 
+  // 0,18,36,54,72,90,108,126
   0,
-  0,
-  strandLength[1],
-  strandLength[1] + strandLength[2],
-  strandLength[1] + strandLength[2] + strandLength[3],
-  strandLength[1] + strandLength[2] + strandLength[3] + strandLength[4],
-  strandLength[1] + strandLength[2] + strandLength[3] + strandLength[4] + strandLength[5],
-  strandLength[1] + strandLength[2] + strandLength[3] + strandLength[4] + strandLength[5] + strandLength[6],
-  strandLength[1] + strandLength[2] + strandLength[3] + strandLength[4] + strandLength[5] + strandLength[6] + strandLength[7]
+  strandLength * 1,
+  strandLength * 2,
+  strandLength * 3,
+  strandLength * 4,
+  strandLength * 5,
+  strandLength * 6,
+  strandLength * 7
 }; 
 
-// Starting position of the led (this number drives the LED through the strand from thsi start position)
-int LEDsections[9] = {
-  0, startLED[1],startLED[2], startLED[3], startLED[4], startLED[5], startLED[6],startLED[7],startLED[8], 
+// Starting position of the led (this number drives the LED through the strand from this start position)
+int LEDsections[8] = {
+  startLED[1],
+  startLED[2], 
+  startLED[3], 
+  startLED[4], 
+  startLED[5], 
+  startLED[6],
+  startLED[7],
+  startLED[8] 
 };
 
 // Starting point of LED + strandLength
-int endLED[9] = {
-  0, 
-  startLED[1] + strandLength[1], 
-  startLED[2] + strandLength[2], 
-  startLED[3] + strandLength[3],
-  startLED[4] + strandLength[4], 
-  startLED[5] + strandLength[5], 
-  startLED[6] + strandLength[6],
-  startLED[7] + strandLength[7], 
-  startLED[8] + strandLength[8] 
+int endLED[8] = {
+  /*0,*/ 
+  startLED[1] + strandLength, 
+  startLED[2] + strandLength, 
+  startLED[3] + strandLength,
+  startLED[4] + strandLength, 
+  startLED[5] + strandLength, 
+  startLED[6] + strandLength,
+  startLED[7] + strandLength, 
+  startLED[8] + strandLength 
 }; 
 
 int blinkSpeed[101] = {
@@ -87,17 +92,17 @@ int blinkSpeed[101] = {
 
   
 // Randomizer 
-int randomizer[9];
+int randomizer[8];
 
 // ??
 long randNumber;
 
 // Strand timer varialbe that allows an LED to run the full length at one speed
-int timer[9] = {0,0,0,0,0,0,0,0}; 
+int timer[8] = {0,0,0,0,0,0,0,0}; 
 
 // Speed variable, which pulls a random number from the blinkSpeed[]
 //int speed = 0; 
-int speed[9] = {0,0,0,0,0,0,0,0};
+int speed[8] = {0,0,0,0,0,0,0,0};
 
 // Reset all LEDs when not sensing people
 int reset = 0; 

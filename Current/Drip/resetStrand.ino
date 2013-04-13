@@ -4,8 +4,9 @@
 
 void resetStrand(int k, int i) {
   // Ignore First Stand
-  if(i != 1) {
+  if(i == 1) {
     
+    // If We Reach The End Of The Strand, Reset
     if (k >= endLED[i]){       
       timer[i] = speed[i];
     } 
