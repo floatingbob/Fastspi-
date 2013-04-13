@@ -8,19 +8,18 @@ void loop() {
   int maX = 35;          
   int miN = 1;
 
-  for(int i = 0; i <= numStrands; i++) {
+  for(int i = 0; i < numStrands; i++) {
       
       // Set Random Speed
       speed[i] = random(blinkSpeed[miN],blinkSpeed[maX]);
-      
+
       // Reset Current Millisecond
       currentMillis[i] = millis();
       
-      for(int k = 0; k <= endLED[1]; k++) {   
+      for(int k = 0; k < strandLength; k++) {   
         // Check & Reset LED Strand
         resetStrand(k, i);
       }
-      //Serial.println("Loop #" + char(i) );   
   } 
 
   // Light Them LEDs !!!

@@ -43,45 +43,46 @@ unsigned long currentMillis[8] = {0,0,0,0,0,0,0,0}; //millis timer array strands
 
 unsigned long stepTime[8] = {0,0,0,0,0,0,0,0}; //step time clock restarter strands 1-4
 
-//unsigned long strandLength[8] = {18,18,18,18,18,18,18,18/*,18*/}; //strand length (change this number for each rib of the umbrella)
+// Number Of Strands
+int numStrands = 8;
+
+// Length Of Strands
 unsigned long strandLength = 18;
 
 // Global load of start position based upon strand length
 int startLED[8] = { 
-  // 0,18,36,54,72,90,108,126
-  0,
-  strandLength * 1,
-  strandLength * 2,
-  strandLength * 3,
-  strandLength * 4,
-  strandLength * 5,
-  strandLength * 6,
-  strandLength * 7
+  strandLength * 0,  // 0 
+  strandLength * 1,  // 18
+  strandLength * 2,  // 36
+  strandLength * 3,  // 54
+  strandLength * 4,  // 72
+  strandLength * 5,  // 90
+  strandLength * 6,  // 108
+  strandLength * 7   // 126
 }; 
 
 // Starting position of the led (this number drives the LED through the strand from this start position)
 int LEDsections[8] = {
-  startLED[1],
+  startLED[0],
+  startLED[1], 
   startLED[2], 
   startLED[3], 
   startLED[4], 
-  startLED[5], 
+  startLED[5],
   startLED[6],
-  startLED[7],
-  startLED[8] 
+  startLED[7] 
 };
 
 // Starting point of LED + strandLength
 int endLED[8] = {
-  /*0,*/ 
+  startLED[0] + strandLength, 
   startLED[1] + strandLength, 
-  startLED[2] + strandLength, 
-  startLED[3] + strandLength,
+  startLED[2] + strandLength,
+  startLED[3] + strandLength, 
   startLED[4] + strandLength, 
-  startLED[5] + strandLength, 
-  startLED[6] + strandLength,
-  startLED[7] + strandLength, 
-  startLED[8] + strandLength 
+  startLED[5] + strandLength,
+  startLED[6] + strandLength, 
+  startLED[7] + strandLength 
 }; 
 
 int blinkSpeed[101] = {
@@ -101,14 +102,12 @@ long randNumber;
 int timer[8] = {0,0,0,0,0,0,0,0}; 
 
 // Speed variable, which pulls a random number from the blinkSpeed[]
-//int speed = 0; 
 int speed[8] = {0,0,0,0,0,0,0,0};
 
 // Reset all LEDs when not sensing people
 int reset = 0; 
 
-// Number Of Strands
-int numStrands = 8;
+
 
 
 
