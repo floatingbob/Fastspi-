@@ -151,6 +151,8 @@ void loop() {
     int k;                                        //
   for(k = 0; k <= endLED[1]; k++){              //Looks through LEDs to see if we've reached end of strand 1
 
+    //Serial.print("K is ");
+    //Serial.println(k); 
 
     //-------Strand 1---------------------------------------------------------------------
     if (k >= endLED[1]){                        //If we have, then set temporary t back to s for new random #
